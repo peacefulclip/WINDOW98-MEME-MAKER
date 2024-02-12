@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paint</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div id="paint-board">
+      <canvas id="canvas"></canvas>
+      <div id="status-bar">
+        <div class="status-bar-column">
+          <img
+            class="window-icon-small"
+            src="https://64.media.tumblr.com/7999a3ff64614a990d750ab7aff4504c/78713370c56ff7d4-48/s540x810/ab26f53ecb8123df0d0f6c0104705142a330f576.png"
+          />
+          <input id="file-name" placeholder="Write File Name ^^" />
+        </div>
+        <div class="status-bar-column"></div>
+        <div class="status-bar-column">
+          <div id="status-bar-icon">
+            <i
+              id="minimize-btn"
+              class="fa-regular fa-window-minimize"
+              aria-hidden="true"
+            ></i>
+          </div>
+          <div id="status-bar-icon">
+            <i class="fa-regular fa-window-restore" aria-hidden="true"></i>
+          </div>
+          <div id="status-bar-icon">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+
+      <div id="left-bar">
+        <!--브러시 & 색깔-->
+        <div>
+          <div id="brush">
+            <div title="Brush Size" id="brush-size">
+              <input
+                id="brush-size-range"
+                min="1"
+                max="10"
+                type="range"
+                step="1"
+                class="hidden"
+              />
+              <img
+                id="brush-size-button"
+                class="window-icon-small window-icon-border"
+                src="https://64.media.tumblr.com/f6abaab4202042b936ba2f561b7f81dc/893c0b4e28579d50-b4/s540x810/ce8b799c067b49c6cd6402868129235e58f4ef75.png"
+              />
+            </div>
+            <div title="Brush Type" id="brush-fill-stroke-container">
+              <!--fill draw or stroke draw-->
+              <div id="brush-fill-stroke-radio" class="hidden">
+                <div>
+                  <input type="radio" id="Fill" name="brushType" value="Fill" />
+                  <label for="Fill">Fill</label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    id="Stroke"
+                    name="brushType"
+                    value="Stroke"
+                    checked
+                  />
+                  <label for="Stroke">Stroke</label>
+                </div>
+              </div>
+
+              <img
+                class="window-icon-small window-icon-border"
+                id="brush-fill-stroke-button"
+                src="https://64.media.tumblr.com/28418fb9435432844f63586aa3cd0ee7/586b9b794b7fefa3-4b/s540x810/275573923f6aada0b7a1a4c572388203ad5d14dd.png"
+              />
+            </div>
+          </div>
+          <div id="paint-brush">
+            <div title="Paint Background / Brush" id="paint-brush-option">
+              <!--paint or draw-->
+              <!--<input
+                id="brush-paint-draw-option"
+                type="button"
+                class="hidden"
+              />-->
+              <img
+                id="brush-paint-draw-button"
+                class="window-icon-small window-icon-border"
+                src="https://64.media.tumblr.com/32c3d9246dbf8237146e4b245ca4e410/4f38a22038f39816-ff/s540x810/3e28460155df564aca1266dda6f3e3dd75df603f.png"
+              />
+            </div>
+            <div
+              id="paint-brush-option"
+              title="why don't you give your drawing to your friend?"
+            >
+              <!--paint or draw-->
+              <!--<input type="button" />-->
+              <img
+                class="window-icon-small window-icon-border"
+                src="https://64.media.tumblr.com/7f33e4ecd10e0756edb24934b24ecedd/2cb7332a684b7c5d-34/s540x810/81cb894f68bfc077694a3a399c999d2e52045ad2.png"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div id="colors-row">
+          <div
+            class="color-option"
+            style="background-color: #000000"
+            data-color="#000000"
+          ></div>
+          <div
+            class="color-option"
+            style="background-color: #7f27ff"
+            data-color="#7f27ff"
+          ></div>
+        </div>
+        <div id="colors-row">
+          <div
+            class="color-option"
+            style="background-color: #e26ee5"
+            data-color="#e26ee5"
+          ></div>
+          <div
+            class="color-option"
+            style="background-color: #d63484"
+            data-color="#d63484"
+          ></div>
+        </div>
+        <div id="colors-row">
+          <div
+            class="color-option"
+            style="background-color: #1640d6"
+            data-color="#1640d6"
+          ></div>
+          <div
+            class="color-option"
+            style="background-color: #ff8911"
+            data-color="#ff8911"
+          ></div>
+        </div>
+        <div id="colors-row">
+          <div
+            class="color-option"
+            style="background-color: #d04848"
+            data-color="#d04848"
+          ></div>
+          <div
+            class="color-option"
+            style="background-color: #96e9c6"
+            data-color="#96e9c6"
+          ></div>
+        </div>
+        <div id="colors-row">
+          <div
+            class="color-option"
+            style="background-color: #fde767"
+            data-color="#fde767"
+          ></div>
+          <div
+            class="color-option"
+            style="background-color: #0c2d57"
+            data-color="#0c2d57"
+          ></div>
+        </div>
+
+        <!--지우개-->
+        <div id="eraser">
+          <div title="Erase Canvas" id="erase-canvas">
+            <img
+              id="erase-canvas-button"
+              class="window-icon-small window-icon-border"
+              src="https://64.media.tumblr.com/b60d2892aa531c1d3164571485316d07/3c3031ca10fb1453-ab/s540x810/59392d21323eb439383c6af5efd0ded1e20455ed.png"
+            />
+            <!--<button>Erase Canvas</button>-->
+          </div>
+          <div title="Erase Drawing" id="erase-drawing">
+            <img
+              id="erase-drawing-button"
+              class="window-icon-small window-icon-border"
+              src="https://64.media.tumblr.com/b60d2892aa531c1d3164571485316d07/3c3031ca10fb1453-ab/s540x810/59392d21323eb439383c6af5efd0ded1e20455ed.png"
+            />
+            <!--<button>Erase Drawing</button>-->
+          </div>
+        </div>
+
+        <label for="colors">
+          <input id="colors" type="color" />
+        </label>
+      </div>
+
+      <div id="bottom-bar">
+        <div class="bottom-bar-column">
+          <input id="meme-image" accept="image/*" type="file" />
+          <input id="meme-text" type="text" placeholder="Show Me Your Joke!" />
+        </div>
+        <div class="bottom-bar-column">
+          <!--밈-->
+          <input
+            id="meme-text-size"
+            type="text"
+            placeholder="Font Size"
+            title="Font Size"
+          />
+          <label for="meme-text-font" title="Font Style"></label>
+          <select id="meme-text-font">
+            <option value="Workbench">Workbench</option>
+            <option value="Anton">Anton</option>
+            <option value="Miltonian Tattoo">Miltonian Tattoo</option>
+          </select>
+        </div>
+        <div class="bottom-bar-column">
+          <!--다운로드-->
+          <img
+            title="Download Canvas"
+            id="canvas-download-button"
+            class="window-icon-big window-icon-border-big"
+            src="https://64.media.tumblr.com/b8c3bbe758f36f8e975f3a4ec6c1c569/2b3777d0072dae9b-45/s540x810/babd53ebc5fbaeb3571e372888980337009d976c.png"
+          />
+          <!--<button class="download-canvas">Download My Meme</button>-->
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/00bff72823.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
