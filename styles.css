@@ -127,12 +127,16 @@ canvas {
 
 #brush-size-range {
     position: absolute;
-    left: 0;
     width: 80px;
-    top: 50px;
     z-index: 5;
     zoom: 0.5;
-    background: none;   
+    background-color: #080162;
+    border-radius: 10px;
+    color: white;
+    left: -120px;
+    top: 15px;
+    border-top-left-radius: 0;
+    padding: 5px; 
 }
 
 #brush-fill-stroke-radio {
@@ -144,7 +148,7 @@ canvas {
     border-radius: 10px;
     color: white;
     left: 70px;
-    top: 10px;
+    top: 5px;
     border-top-left-radius: 0;
     padding: 5px;
 }
@@ -328,6 +332,7 @@ canvas {
     position: absolute;
     bottom: 20px;
 }
+
 
 #meme-text-size {
     position: absolute;
